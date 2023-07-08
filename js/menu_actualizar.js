@@ -1,38 +1,40 @@
 console.log(location.search)     // lee los argumentos pasados a este formulario
-var id=location.search.substr(4)  // producto_update.html?id=1
+// var id = location.search.substr(4) || 0;  // producto_update.html?id=1
 console.log(id)
 const { createApp } = Vue
-  createApp({
+createApp({
     data() {
-      return {
-        id:0,
-        nombre:"",
-        imagen:"",
-        stock:0,
-        precio:0,
-        url:'https://devburgercac.pythonanywhere.com/productos/'+ProdID,
-       }  
+        var id = location.search.substr(4) || 0;
+        return {
+            nombre: "",
+            imagen: "",
+            stock: 0,
+            precio: 0,
+            url: 'https://devburgercac.pythonanywhere.com/productos/' + id,
+            error: false,
+        };
     },
+
+
     methods: {
         fetchData(url) {
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
-                    console.log(data)
-                    this.id=data.ProdID,
-                    this.nombre = data.nombre,
-                    this.imagen=data.imagen
-                    this.stock=data.stock
-                    this.precio=data.precio                    
+                    console.log(data);
+                    this.nombre = data.nombre;
+                    this.imagen = data.imagen;
+                    this.stock = data.stock;
+                    this.precio = data.precio;
                 })
                 .catch(err => {
                     console.error(err);
-                    this.error=true              
-                })
+                    this.error = true;
+                });
         },
         modificar() {
             let producto = {
-                nombre:this.nombre,
+                nombre: this.nombre,
                 precio: this.precio,
                 stock: this.stock,
                 imagen: this.imagen
@@ -51,10 +53,10 @@ const { createApp } = Vue
                 .catch(err => {
                     console.error(err);
                     alert("Error al Modificar")
-                })      
+                })
         }
     },
     created() {
         this.fetchData(this.url)
     },
-  }).mount('#app')
+}).mount('#app')
