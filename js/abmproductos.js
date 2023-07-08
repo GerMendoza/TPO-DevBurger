@@ -37,13 +37,17 @@ createApp({
                     alert('Registro Eliminado')
                     location.reload(); // recarga el json luego de eliminado el registro
                 })
+                .catch(err => {
+                    console.error(err);
+                    alert('Error al eliminar el registro');
+                });
         },
         grabar() {
             let producto = {
-                ProdNombre: this.nombre,
-                ProdDescrp: this.descripcion,
-                ProdImg: this.imagen,
-                ProdPrecio: this.precio,
+                ProdNombre: this.ProdNombre,
+                ProdDescrp: this.ProdDescrp,
+                ProdImg: this.ProdImg,
+                ProdPrecio: this.ProdPrecio,
             }
             var options = {
                 body: JSON.stringify(producto),
