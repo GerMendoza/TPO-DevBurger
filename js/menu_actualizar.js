@@ -48,7 +48,7 @@ createApp({
             fetch(this.url, options)
                 .then(function () {
                     alert("Registro modificado")
-                    window.location.href = "./productos.html"; // navega a productos.html          
+                    window.location.href = "./abmmenu.html"; // navega a abmmenu.html
                 })
                 .catch(err => {
                     console.error(err);
