@@ -51,20 +51,20 @@
         <h1 style="color:black">Dar de alta un plato</h1>
         <div class="mb-3">
           <label for="nombre">Nombre</label>
-          <input type="text" name="nombre" id="nombre" v-model="nombre">
+          <input type="text" name="nombre" id="nombre" v-model="ProdNombre">
         </div>
         <div class="mb-3">
           <label for="descripcion">Descripcion</label>
-          <input type="text" name="descripcion" id="descripcion" v-model="descripcion">
+          <input type="text" name="descripcion" id="descripcion" v-model="ProdDescrp">
         </div>
         <div class="mb-3">
           <label for="precio">Precio</label>
-          <input type="number" name="precio" id="precio" v-model="precio">
+          <input type="number" name="precio" id="precio" v-model="ProdPrecio">
         </div>
         <div class="mb-3">
           <label for="imagen">URL Imagen</label>
-          <input type="text" name="imagen" id="imagen" v-model="imagen">
-          <img width="100" :src="imagen" alt="">
+          <input type="text" name="imagen" id="imagen" v-model="ProdImg">
+          <img width="100" :src="ProdImg" alt="">
         </div>
         <button type="button" class="btn" v-on:click="grabar()"
           style="background-color: black;color:white;">Grabar</button>
