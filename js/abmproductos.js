@@ -1,9 +1,10 @@
-const { createApp } = Vue
+const { createApp } = Vue;
+
 createApp({
     data() {
         return {
             productos: [],
-            url: 'http://devburgercac.pythonanywhere.com/productos',   // si ya lo subieron a pythonanywhere
+            url: 'https://devburgercac.pythonanywhere.com/productos',
             error: false,
             cargando: true,
             ProdID: 0,
@@ -11,7 +12,7 @@ createApp({
             ProdDescrp: "",
             ProdPrecio: 0,
             ProdImg: ""
-        }
+        };
     },
     methods: {
         fetchData(url) {
@@ -19,22 +20,22 @@ createApp({
                 .then(response => response.json())
                 .then(data => {
                     this.productos = data;
-                    this.cargando = false
+                    this.cargando = false;
                 })
                 .catch(err => {
                     console.error(err);
-                    this.error = true
-                })
+                    this.error = true;
+                });
         },
         eliminar(ProdID) {
             const url = this.url + '/' + ProdID;
             var options = {
                 method: 'DELETE',
-            }
+            };
             fetch(url, options)
                 .then(res => res.text()) // or res.json()
                 .then(res => {
-                    alert('Registro Eliminado')
+                    alert('Registro Eliminado');
                     location.reload(); // recarga el json luego de eliminado el registro
                 })
                 .catch(err => {
@@ -64,16 +65,14 @@ createApp({
                     this.ProdDescrp = "";
                     this.ProdPrecio = 0;
                     this.ProdImg = "";
-                    // window.location.href = "abmmenu.html";
                 })
                 .catch(err => {
                     console.error(err);
                     alert("Error al Grabar");
                 });
         },
-
     },
     created() {
-        this.fetchData(this.url)
-    },
-}).mount('#app')
+        this.fetchData(this.url);
+    }
+}).mount('#app');
