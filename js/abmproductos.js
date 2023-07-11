@@ -3,14 +3,14 @@ createApp({
     data() {
         return {
             productos: [],
-            url: 'https://devburgercac.pythonanywhere.com/productos',   // si ya lo subieron a pythonanywhere
+            url: 'http://devburgercac.pythonanywhere.com/productos',   // si ya lo subieron a pythonanywhere
             error: false,
             cargando: true,
             ProdID: 0,
             ProdNombre: "",
             ProdDescrp: "",
-            ProdImg: "",
             ProdPrecio: 0,
+            ProdImg: ""
         }
     },
     methods: {
@@ -26,8 +26,8 @@ createApp({
                     this.error = true
                 })
         },
-        eliminar(id) {
-            const url = this.url + '/' + id;
+        eliminar(ProdID) {
+            const url = this.url + '/' + ProdID;
             var options = {
                 method: 'DELETE',
             }
@@ -48,24 +48,30 @@ createApp({
                 ProdDescrp: this.ProdDescrp,
                 ProdImg: this.ProdImg,
                 ProdPrecio: this.ProdPrecio,
-            }
+            };
             var options = {
                 body: JSON.stringify(producto),
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 redirect: 'follow'
-            }
+            };
             fetch(this.url, options)
-                .then(function () {
-                    alert("Registro grabado"),
-                    alert(this.nombre),
-                    window.location.href = "abmmenu.html";
+                .then(response => {
+                    console.log(response);
+                    alert("Registro grabado");
+                    this.fetchData(this.url); // Fetch updated data
+                    this.ProdNombre = ""; // Reset form fields
+                    this.ProdDescrp = "";
+                    this.ProdPrecio = 0;
+                    this.ProdImg = "";
+                    // window.location.href = "abmmenu.html";
                 })
                 .catch(err => {
                     console.error(err);
-                    alert("Error al Grabar")  // puedo mostrar el error tambien
-                })
-        }
+                    alert("Error al Grabar");
+                });
+        },
+
     },
     created() {
         this.fetchData(this.url)

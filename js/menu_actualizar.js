@@ -7,9 +7,11 @@ createApp({
         var id = location.search.substr(4) || 0;
         return {
             nombre: "",
+            ProdID: 0,
             imagen: "",
-            stock: 0,
             precio: 0,
+            stock: 0,
+            descripcion: "",
             url: 'https://devburgercac.pythonanywhere.com/productos/' + id,
             error: false,
         };
@@ -24,7 +26,7 @@ createApp({
                     console.log(data);
                     this.nombre = data.nombre;
                     this.imagen = data.imagen;
-                    this.stock = data.stock;
+                    this.descripcion = data.descripcion;
                     this.precio = data.precio;
                 })
                 .catch(err => {
@@ -36,7 +38,7 @@ createApp({
             let producto = {
                 nombre: this.nombre,
                 precio: this.precio,
-                stock: this.stock,
+                descripcion: this.descripcion,
                 imagen: this.imagen
             }
             var options = {
