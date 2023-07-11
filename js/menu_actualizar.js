@@ -4,15 +4,15 @@ console.log(id)
 const { createApp } = Vue
 createApp({
     data() {
-        var id = location.search.substr(4) || 0;
+        var ProdID = location.search.substr(4) || 0;
         return {
             nombre: "",
-            ProdID: 0,
+            ProdID,
             imagen: "",
             precio: 0,
             stock: 0,
             descripcion: "",
-            url: 'https://devburgercac.pythonanywhere.com/productos/' + id,
+            url: 'https://devburgercac.pythonanywhere.com/productos/' + ProdID,
             error: false,
         };
     },
