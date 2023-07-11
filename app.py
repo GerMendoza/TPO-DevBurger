@@ -14,7 +14,7 @@ def read_html_file():
         return file.read()
 
 # Configuration for the database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://DevBurgerCaC:CodoACodoDev@DevBurgerCaC.mysql.pythonanywhere-services.com/DevBurgerCaC$CodoACodoProject'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://DevBurgerCaC:root12345@DevBurgerCaC.mysql.pythonanywhere-services.com/DevBurgerCaC$CodoACodoProject'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
